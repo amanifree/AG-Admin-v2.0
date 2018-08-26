@@ -5,11 +5,12 @@
     <el-button class="filter-item" type="primary" v-waves icon="search" @click="handleFilter">搜索</el-button>
     <el-button class="filter-item"  v-if="userManager_btn_add"  style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
   </div>
+
   <el-table :key='tableKey' :data="list" v-loading.body="listLoading" border fit highlight-current-row style="width: 100%">
     <el-table-column align="center" label="序号" width="65"> <template scope="scope">
           <span>{{scope.row.id}}</span>
         </template> </el-table-column>
-    <el-table-column width="200" align="center" label="姓名"> <template scope="scope">
+    <el-table-column width="200" align="center" label="姓名2"> <template scope="scope">
         <span>{{scope.row.name}}</span>
       </template> </el-table-column>
     <el-table-column width="110" align="center" label="账户"> <template scope="scope">
@@ -37,9 +38,10 @@
   <div v-show="!listLoading" class="pagination-container">
     <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page.sync="listQuery.page" :page-sizes="[10,20,30, 50]" :page-size="listQuery.limit" layout="total, sizes, prev, pager, next, jumper" :total="total"> </el-pagination>
   </div>
+
   <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
     <el-form :model="form" :rules="rules" ref="form" label-width="100px">
-      <el-form-item label="姓名" prop="name">
+      <el-form-item label="姓名1" prop="name">
         <el-input v-model="form.name" placeholder="请输入姓名"></el-input>
       </el-form-item>
       <el-form-item label="账户" prop="username">
@@ -216,6 +218,7 @@ export default {
     },
     create(formName) {
       const set = this.$refs;
+      debugger
       set[formName].validate(valid => {
         if (valid) {
           addObj(this.form)

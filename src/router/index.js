@@ -141,4 +141,18 @@ export const asyncRouterMap = [{
     name: '服务状态监控',
     authority: 'serviceZipkinManager'
   }]
+},
+{
+  path: '/saleManager',
+  component: Layout,
+  name: '销售管理',
+  icon: 'setting',
+  authority: 'saleManager',
+  children: [{
+    path: 'orderManage',
+    icon: '',
+    component: _import('sale/order/index'),
+    name: '订单管理',
+    authority: 'saleManager'
+  }]
 }];
